@@ -174,6 +174,13 @@ view: device_orders {
     sql: ${TABLE}.DEVICE_PROD_NM ;;
   }
 
+  dimension: previous_device_is_android_or_iphone {
+    type: string
+    sql: case when ${device_prod_nm_prev} LIKE '%IPHONE%' then 'iPhone'
+              when ${device_prod_nm_prev} = '?' then null
+              else 'Android' end ;;
+  }
+
   dimension: device_prod_nm_prev {
     label: "Previous Product Number"
     view_label: "Device"
@@ -356,6 +363,7 @@ view: device_orders {
 
   dimension: st_cd {
     label: "State"
+    map_layer_name: us_states
     view_label: "Customer"
     type: string
     sql: ${TABLE}.ST_CD ;;
@@ -421,15 +429,17 @@ view: device_orders {
   measure: total_sold_amount {
     type: sum
     sql: ${sold_price_amt} ;;
-    value_format_name: usd
+    value_format_name: usd_0
     drill_fields: [detail_drill*]
+    filters: [sold_price_amt: ">0"]
   }
 
   measure: average_sold_amount {
-    type: sum
+    type: average
     sql: ${sold_price_amt} ;;
-    value_format_name: usd
+    value_format_name: usd_0
     drill_fields: [detail_drill*]
+    filters: [sold_price_amt: ">0"]
   }
 
   set: detail_drill {

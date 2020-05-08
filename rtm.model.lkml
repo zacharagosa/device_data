@@ -7,6 +7,7 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 
 
 explore: device_orders {
+  sql_always_where: ${sold_price_amt} > 0 ;;
   query: purchases_by_service_preference {
     dimensions: [service_pref]
     measures: [total_purchases]
