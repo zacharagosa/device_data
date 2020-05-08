@@ -12,4 +12,15 @@ explore: device_orders {
     measures: [total_purchases]
   }
 
+  query: purchases_by_date {
+    dimensions: [activity_date]
+    sorts: [activity_date: asc]
+    measures: [total_purchases]
+  }
+
+  query: purchase_by_type {
+    dimensions: [purchase_type]
+    measures: [total_purchases]
+  }
+
 }
