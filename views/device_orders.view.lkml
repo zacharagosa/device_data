@@ -128,7 +128,8 @@ view: device_orders {
     link: {
       label: "Customer Lookup"
       url:"/dashboards-next/19?Customer+ID={{ value | encode_uri }}"
-      icon_url: "http://www.looker.com/favicon.ico"
+      icon_url: "http://www.google.com/s2/favicons?domain=www.verizon.com"
+      # URL for Looker favicon --> icon_url: "http://www.looker.com/favicon.ico"
     }
   }
 
