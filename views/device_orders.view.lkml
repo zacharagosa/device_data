@@ -125,6 +125,11 @@ view: device_orders {
     view_label: "Customer"
     type: number
     sql: ${TABLE}.CUST_ID ;;
+    link: {
+      label: "Customer Lookup"
+      url:"/dashboards-next/19?Customer+ID={{ value | encode_uri }}"
+      icon_url: "http://www.looker.com/favicon.ico"
+    }
   }
 
   dimension: cust_line_seq_id {
