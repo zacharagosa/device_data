@@ -223,6 +223,7 @@ view: device_orders {
     label: "Ethnicity Segment"
     type: string
     sql: ${TABLE}.ETHNICITY_SEGMT ;;
+    drill_fields: [lifestage]
   }
 
   dimension: gross_qty {
@@ -263,20 +264,24 @@ view: device_orders {
 
   dimension: plan {
     view_label: "Plan"
+    label: ""
     type: string
     sql: ${TABLE}.PLAN ;;
   }
 
   dimension: plan_ctgry {
     view_label: "Plan"
+    label: "Category"
     type: string
     sql: ${TABLE}.PLAN_CTGRY ;;
+    drill_fields: [plan]
   }
 
   dimension: plan_data_group {
     view_label: "Plan"
     type: string
     sql: ${TABLE}.PLAN_DATA_GROUP ;;
+    drill_fields: [plan]
   }
 
   dimension: plan_feat_pref {
@@ -399,6 +404,7 @@ view: device_orders {
               when ${refund_qty} = 1 then 'Refund'
               else 'New'
               end;;
+    drill_fields: [plan_ctgry, plan]
   }
 
   measure: total_purchases {
